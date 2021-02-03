@@ -8,6 +8,7 @@ import useUniqueContextId, {
   reset as resetContextId,
 } from './use-unique-context-id';
 import { reset as resetUniqueIds } from '../use-unique-id';
+import { globalRef } from '../global-ref';
 
 type Props = {|
   ...Responders,
@@ -36,7 +37,8 @@ export default function DragDropContext(props: Props) {
   const contextId: ContextId = useUniqueContextId();
   const dragHandleUsageInstructions: string =
     props.dragHandleUsageInstructions || preset.dragHandleUsageInstructions;
-
+  globalRef._document = props.iframeDocument || document;
+  globalRef._window = props.iframeWindow || window;
   // We need the error boundary to be on the outside of App
   // so that it can catch any errors caused by App
   return (
@@ -54,8 +56,6 @@ export default function DragDropContext(props: Props) {
           onDragStart={props.onDragStart}
           onDragUpdate={props.onDragUpdate}
           onDragEnd={props.onDragEnd}
-          iframeWindow={props.iframeWindow}
-          iframeDocument={props.iframeDocument}
         >
           {props.children}
         </App>
