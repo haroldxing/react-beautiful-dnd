@@ -21,6 +21,9 @@ type Props = {|
   // See our [sensor api](/docs/sensors/sensor-api.md)
   sensors?: Sensor[],
   enableDefaultSensors?: ?boolean,
+
+  iframeWindow?: Window,
+  iframeDocument?: Document,
 |};
 
 // Reset any context that gets persisted across server side renders
@@ -51,6 +54,8 @@ export default function DragDropContext(props: Props) {
           onDragStart={props.onDragStart}
           onDragUpdate={props.onDragUpdate}
           onDragEnd={props.onDragEnd}
+          iframeWindow={props.iframeWindow}
+          iframeDocument={props.iframeDocument}
         >
           {props.children}
         </App>
