@@ -111,7 +111,6 @@ export default function App(props: Props) {
   const dragHandleUsageInstructionsId: ElementId = useHiddenTextElement({
     contextId,
     text: dragHandleUsageInstructions,
-    iframeDocument,
   });
   const styleMarshal: StyleMarshal = useStyleMarshal(contextId, nonce);
 
