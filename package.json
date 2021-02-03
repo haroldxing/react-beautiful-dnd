@@ -153,5 +153,5 @@
   "jest-junit": {
     "output": "test-reports/junit/js-test-results.xml"
   },
-  "types": "index.d.ts"
+  "types": "src/types.d.ts"
 }
