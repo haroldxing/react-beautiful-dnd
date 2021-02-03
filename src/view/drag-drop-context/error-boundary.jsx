@@ -5,6 +5,7 @@ import { noop } from '../../empty';
 import bindEvents from '../event-bindings/bind-events';
 import { RbdInvariant } from '../../invariant';
 import type { AppCallbacks } from './drag-drop-context-types';
+import { globalRef } from '../global-ref';
 
 type Props = {|
   children: (setCallbacks: (callbacks: AppCallbacks) => void) => Node,
