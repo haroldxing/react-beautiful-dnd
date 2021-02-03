@@ -1,11 +1,12 @@
 // @flow
 import { find } from '../../../../native-with-fallback';
+import { globalRef } from '../../../global-ref';
 
 const supportedEventName: string = ((): string => {
   const base: string = 'visibilitychange';
 
   // Server side rendering
-  if (typeof document === 'undefined') {
+  if (typeof globalRef._document === 'undefined') {
     return base;
   }
 
@@ -20,7 +21,7 @@ const supportedEventName: string = ((): string => {
 
   const supported: ?string = find(
     candidates,
-    (eventName: string): boolean => `on${eventName}` in document,
+    (eventName: string): boolean => `on${eventName}` in globalRef._document,
   );
 
   return supported || base;

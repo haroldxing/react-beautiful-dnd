@@ -32,6 +32,7 @@ import whatIsDraggedOver from '../../state/droppable/what-is-dragged-over';
 import { updateViewportMaxScroll as updateViewportMaxScrollAction } from '../../state/action-creators';
 import StoreContext from '../context/store-context';
 import whatIsDraggedOverFromResult from '../../state/droppable/what-is-dragged-over-from-result';
+import { globalRef } from '../global-ref';
 
 const isMatchingType = (type: TypeId, critical: Critical): boolean =>
   type === critical.droppable.type;
@@ -228,8 +229,8 @@ const mapDispatchToProps: DispatchProps = {
 };
 
 function getBody(): HTMLElement {
-  invariant(document.body, 'document.body is not ready');
-  return document.body;
+  invariant(globalRef._document.body, 'document.body is not ready');
+  return globalRef._document.body;
 }
 
 const defaultProps = ({

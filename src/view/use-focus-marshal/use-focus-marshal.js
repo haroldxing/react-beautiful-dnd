@@ -6,6 +6,7 @@ import type { FocusMarshal, Unregister } from './focus-marshal-types';
 import { dragHandle as dragHandleAttr } from '../data-attributes';
 import useLayoutEffect from '../use-isomorphic-layout-effect';
 import findDragHandle from '../get-elements/find-drag-handle';
+import { globalRef } from '../global-ref';
 
 type Entry = {|
   id: DraggableId,
@@ -44,7 +45,7 @@ export default function useFocusMarshal(contextId: ContextId): FocusMarshal {
     function tryGiveFocus(tryGiveFocusTo: DraggableId) {
       const handle: ?HTMLElement = findDragHandle(contextId, tryGiveFocusTo);
 
-      if (handle && handle !== document.activeElement) {
+      if (handle && handle !== globalRef._document.activeElement) {
         handle.focus();
       }
     },
@@ -89,7 +90,7 @@ export default function useFocusMarshal(contextId: ContextId): FocusMarshal {
     // clear any existing record
     recordRef.current = null;
 
-    const focused: ?Element = document.activeElement;
+    const focused: ?Element = globalRef._document.activeElement;
 
     // no item focused so it cannot be our item
     if (!focused) {

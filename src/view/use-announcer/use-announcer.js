@@ -5,6 +5,7 @@ import type { Announce, ContextId } from '../../types';
 import { warning } from '../../dev-warning';
 import getBodyElement from '../get-body-element';
 import visuallyHidden from '../visually-hidden-style';
+import { globalRef } from '../global-ref';
 
 export const getId = (contextId: ContextId): string =>
   `rbd-announcement-${contextId}`;
@@ -15,7 +16,7 @@ export default function useAnnouncer(contextId: ContextId): Announce {
 
   useEffect(
     function setup() {
-      const el: HTMLElement = document.createElement('div');
+      const el: HTMLElement = globalRef._document.createElement('div');
       // storing reference for usage in announce
       ref.current = el;
 

@@ -1,11 +1,12 @@
 // @flow
 import { find } from '../../native-with-fallback';
+import { globalRef } from '../global-ref';
 
 const supportedMatchesName: string = ((): string => {
   const base: string = 'matches';
 
   // Server side rendering
-  if (typeof document === 'undefined') {
+  if (typeof globalRef._document === 'undefined') {
     return base;
   }
 

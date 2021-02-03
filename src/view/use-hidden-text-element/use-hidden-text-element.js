@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useMemo } from 'use-memo-one';
 import type { ContextId, ElementId } from '../../types';
 import getBodyElement from '../get-body-element';
+import { globalRef } from '../global-ref';
 import useUniqueId from '../use-unique-id';
 
 type GetIdArgs = {|
@@ -31,7 +32,7 @@ export default function useHiddenTextElement({
 
   useEffect(
     function mount() {
-      const el: HTMLElement = document.createElement('div');
+      const el: HTMLElement = globalRef._document.createElement('div');
 
       // identifier
       el.id = id;
