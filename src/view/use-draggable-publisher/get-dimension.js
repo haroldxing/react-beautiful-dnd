@@ -11,13 +11,16 @@ import type {
   Placeholder,
 } from '../../types';
 import { origin } from '../../state/position';
+import { globalRef } from '../global-ref';
 
 export default function getDimension(
   descriptor: DraggableDescriptor,
   el: HTMLElement,
   windowScroll?: Position = origin,
 ): DraggableDimension {
-  const computedStyles: CSSStyleDeclaration = window.getComputedStyle(el);
+  const computedStyles: CSSStyleDeclaration = globalRef._window.getComputedStyle(
+    el,
+  );
   const borderBox: ClientRect = el.getBoundingClientRect();
   const client: BoxModel = calculateBox(borderBox, computedStyles);
   const page: BoxModel = withScroll(client, windowScroll);

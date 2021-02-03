@@ -1,5 +1,6 @@
 // @flow
 import { type Position } from 'css-box-model';
+import { globalRef } from '../global-ref';
 
 // The browsers update document.documentElement.scrollTop and window.pageYOffset
 // differently as the window scrolls.
@@ -25,6 +26,6 @@ import { type Position } from 'css-box-model';
 // window.pageYOffset: updates to whole number
 
 export default (): Position => ({
-  x: window.pageXOffset,
-  y: window.pageYOffset,
+  x: globalRef._window.pageXOffset,
+  y: globalRef._window.pageYOffset,
 });

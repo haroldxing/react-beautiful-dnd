@@ -4,6 +4,7 @@ import type { State } from '../../../types';
 import type { MiddlewareStore, Action, Dispatch } from '../../store-types';
 import type { EventBinding } from '../../../view/event-bindings/event-types';
 import bindEvents from '../../../view/event-bindings/bind-events';
+import { globalRef } from '../../../view/global-ref';
 
 export default (store: MiddlewareStore) => {
   let unbind: ?() => void = null;
@@ -57,7 +58,7 @@ export default (store: MiddlewareStore) => {
     // It leads to funny drop positions :(
     frameId = requestAnimationFrame(() => {
       frameId = null;
-      unbind = bindEvents(window, [binding]);
+      unbind = bindEvents(globalRef._window, [binding]);
     });
   };
 };

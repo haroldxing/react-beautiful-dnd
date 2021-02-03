@@ -63,9 +63,6 @@ export type Props = {|
 
   // screen reader
   dragHandleUsageInstructions: string,
-
-  iframeWindow?: Window,
-  iframeDocument?: Document,
 |};
 
 const createResponders = (props: Props): Responders => ({
@@ -92,8 +89,6 @@ export default function App(props: Props) {
     sensors,
     nonce,
     dragHandleUsageInstructions,
-    iframeWindow = window,
-    iframeDocument = document,
   } = props;
   const lazyStoreRef: LazyStoreRef = useRef<?Store>(null);
 
@@ -232,8 +227,6 @@ export default function App(props: Props) {
       isMovementAllowed: getIsMovementAllowed,
       dragHandleUsageInstructionsId,
       registry,
-      iframeWindow,
-      iframeDocument,
     }),
     [
       contextId,
@@ -243,8 +236,6 @@ export default function App(props: Props) {
       getCanLift,
       getIsMovementAllowed,
       registry,
-      iframeWindow,
-      iframeDocument,
     ],
   );
 

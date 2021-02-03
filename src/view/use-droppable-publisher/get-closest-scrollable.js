@@ -19,7 +19,7 @@ const isBoth = (overflow: Overflow, fn: (value: string) => boolean) =>
   fn(overflow.overflowX) && fn(overflow.overflowY);
 
 const isElementScrollable = (el: Element): boolean => {
-  const style: CSSStyleDeclaration = window.getComputedStyle(el);
+  const style: CSSStyleDeclaration = globalRef._window.getComputedStyle(el);
   const overflow: Overflow = {
     overflowX: style.overflowX,
     overflowY: style.overflowY,
@@ -45,7 +45,9 @@ const isBodyScrollable = (): boolean => {
     return false;
   }
 
-  const htmlStyle: CSSStyleDeclaration = window.getComputedStyle(html);
+  const htmlStyle: CSSStyleDeclaration = globalRef._window.getComputedStyle(
+    html,
+  );
   const htmlOverflow: Overflow = {
     overflowX: htmlStyle.overflowX,
     overflowY: htmlStyle.overflowY,

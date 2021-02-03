@@ -19,15 +19,16 @@ import type { StyleMarshal } from '../view/use-style-marshal/style-marshal-types
 import type { AutoScroller } from './auto-scroller/auto-scroller-types';
 import type { Responders, Announce } from '../types';
 import type { Store } from './store-types';
+import { globalRef } from '../view/global-ref';
 
 // We are checking if window is available before using it.
 // This is needed for universal apps that render the component server side.
 // Details: https://github.com/zalmoxisus/redux-devtools-extension#12-advanced-store-setup
 const composeEnhancers =
   process.env.NODE_ENV !== 'production' &&
-  typeof window !== 'undefined' &&
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+  typeof globalRef._window !== 'undefined' &&
+  globalRef._window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? globalRef._window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         name: 'react-beautiful-dnd',
       })
     : compose;

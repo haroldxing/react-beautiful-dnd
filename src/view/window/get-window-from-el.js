@@ -1,3 +1,5 @@
+import { globalRef } from '../global-ref';
+
 // @flow
-export default (el: ?Element): typeof window =>
-  el && el.ownerDocument ? el.ownerDocument.defaultView : window;
+export default (el: ?Element): typeof globalRef._window =>
+  el && el.ownerDocument ? el.ownerDocument.defaultView : globalRef._window;

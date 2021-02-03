@@ -20,7 +20,7 @@ export default class ErrorBoundary extends React.Component<Props> {
   unbind: () => void = noop;
 
   componentDidMount() {
-    this.unbind = bindEvents(window, [
+    this.unbind = bindEvents(globalRef._window, [
       {
         eventName: 'error',
         fn: this.onWindowError,

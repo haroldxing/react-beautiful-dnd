@@ -1,5 +1,5 @@
 // @flow
-
+import { globalRef } from './view/global-ref';
 const isProduction: boolean = process.env.NODE_ENV === 'production';
 
 // not replacing newlines (which \s does)
@@ -38,7 +38,10 @@ export function log(type: 'error' | 'warn', message: string) {
   }
 
   // manual opt out of warnings
-  if (typeof window !== 'undefined' && window[isDisabledFlag]) {
+  if (
+    typeof globalRef._window !== 'undefined' &&
+    globalRef._window[isDisabledFlag]
+  ) {
     return;
   }
 

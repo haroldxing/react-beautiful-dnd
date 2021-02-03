@@ -1,4 +1,5 @@
 // @flow
+import { globalRef } from '../global-ref';
 import getClosestScrollable from './get-closest-scrollable';
 
 export type Env = {|
@@ -13,7 +14,7 @@ const getIsFixed = (el: ?Element): boolean => {
   if (!el) {
     return false;
   }
-  const style: CSSStyleDeclaration = window.getComputedStyle(el);
+  const style: CSSStyleDeclaration = globalRef._window.getComputedStyle(el);
   if (style.position === 'fixed') {
     return true;
   }
